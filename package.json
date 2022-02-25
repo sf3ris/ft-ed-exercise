@@ -1,0 +1,48 @@
+{
+  "name": "shopper-app-bff",
+  "version": "1.0.0",
+  "description": "Shopper App BFF",
+  "main": "src/index.ts",
+  "repository": "git@github.com:everli/shopper-app-bff.git",
+  "author": "sf3ris <vale.piz92@hotmail.it>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install",
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/index.js",
+    "dev": "nodemon  -e ts,tsx  ./src/index.ts",
+    "prettier": "prettier --check \"**/*.ts\"",
+    "prettier:format": "prettier --write \"**/*.ts\"",
+    "eslint": "eslint -c ./.eslintrc --no-eslintrc ./**/*.ts*",
+    "lint": "concurrently \"npm run eslint\" \"npm run prettier\"",
+    "commitlint": "commitlint"
+  },
+  "dependencies": {
+    "fastify": "^3.22.0",
+    "fastify-redis": "^4.3.3",
+    "kafkajs": "^1.15.0",
+    "rqlite-js": "^2.5.4",
+    "undici": "^4.12.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "concurrently": "^6.3.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "husky": "^7.0.2",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}

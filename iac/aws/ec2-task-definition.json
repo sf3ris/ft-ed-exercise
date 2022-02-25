@@ -1,0 +1,39 @@
+{
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "inferenceAccelerators": [],
+    "containerDefinitions": [
+      {
+        "name": "shopper-app-bff",
+        "image": "shopper-app-bff-repository:00000",
+        "resourceRequirements": null,
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "containerPort": "8081",
+            "hostPort": "8081",
+            "protocol": "tcp"
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "secretOptions": [],
+          "options": {
+            "awslogs-group": "ShopperAppBffInfraStack-shopperappbfftaskdefinitionshopperappbffLogGroupF04F63F8-ENMrBxYWa8au",
+            "awslogs-region": "eu-central-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
+      }
+    ],
+    "volumes": [],
+    "networkMode": null,
+    "memory": "512",
+    "cpu": "256",
+    "executionRoleArn": "arn:aws:iam::293076747951:role/shopper-app-bff-execution-role",
+    "family": "shopper-app-bff-task-definition",
+    "taskRoleArn": "",
+    "placementConstraints": []
+  }

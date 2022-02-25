@@ -1,0 +1,28 @@
+# Build node app with dev dependencies
+FROM node:14.18.0-alpine as build
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/
+RUN yarn install
+
+COPY . /usr/src/app/
+RUN yarn build
+
+# Copy the build and install only production dependencies
+FROM node:14.18.0-alpine
+
+ENV NODE_ENV production
+
+RUN mkdir -p /usr/src/app/build
+WORKDIR /usr/src/app
+
+USER $APPLICATION_USER
+
+COPY --from=build /usr/src/app/package.json /usr/src/app/
+RUN yarn install
+COPY --from=build /usr/src/app/build/ /usr/src/app/build
+
+EXPOSE 8081
+CMD [ "yarn", "start" ]
