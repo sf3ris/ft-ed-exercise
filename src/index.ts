@@ -1,8 +1,8 @@
 import fastify from 'fastify';
 import app from './app';
-import exerciseEventHandler from "./domain/exercise/exerciseEventHandler";
+import exerciseEventHandler from './domain/exercise/exerciseEventHandler';
 
-const server = fastify({logger: true});
+const server = fastify({ logger: true });
 server.register(app);
 
 server.listen({ host: '0.0.0.0', port: 8081 }, (err, address) => {
