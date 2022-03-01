@@ -4,10 +4,13 @@ import { FastifyInstance } from 'fastify';
 let instance: FastifyRedis | null = null;
 
 export const registerRedisInstance = async (fastify: FastifyInstance): Promise<FastifyInstance> => {
+  const redisHost = process.env.REDIS_HOST ?? '0.0.0.0';
+  const redisPort = parseInt(process.env.REDIS_PORT ?? '6379');
+
   await fastify
     .register(fastifyRedis, {
-      host: process.env.REDIS_HOST || '0.0.0.0',
-      port: process.env.REDIS_PORT || 6379,
+      host: redisHost,
+      port: redisPort,
     })
     .then(
       () => {

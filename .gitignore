@@ -3,4 +3,5 @@ node_modules/
 yarn.lock
 .vscode/
 .nyc_output/
-.coverage/
+coverage/
+build/

@@ -16,7 +16,7 @@ const getExercises = async (nameFilter = ''): Promise<IExercise[]> => {
     exerciseKeys.map(async (key: string) => {
       return {
         id: key.replace('exercise:', ''),
-        ...JSON.parse(await redis.get(key)),
+        ...JSON.parse((await redis.get(key)) ?? '{}'),
       };
     }),
   );
@@ -54,7 +54,7 @@ const deleteExercise = async (exerciseId: string): Promise<void> => {
   const redis = getRedisInstance();
 
   const key = `exercise:${exerciseId}`;
-  return await redis.del(key);
+  await redis.del(key);
 };
 
 export const exerciseRepository = {
