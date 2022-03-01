@@ -43,11 +43,11 @@ const getExerciseById = async (id: string): Promise<IExercise | undefined> => {
   };
 };
 
-const storeExercise = async (exercise: IExercise): Promise<IExercise> => {
+const storeExercise = async (exercise: IExercise): Promise<void> => {
   const redis = getRedisInstance();
 
   const key = `exercise:${exercise.id}`;
-  return await redis.set(key, JSON.stringify(exercise));
+  await redis.set(key, JSON.stringify(exercise));
 };
 
 const deleteExercise = async (exerciseId: string): Promise<void> => {
