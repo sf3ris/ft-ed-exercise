@@ -14,9 +14,14 @@ const getExercises = async (nameFilter = ''): Promise<IExercise[]> => {
 
   const exercises = await Promise.all(
     exerciseKeys.map(async (key: string) => {
+      const exercise = await redis.get(key);
+      if (exercise === null) {
+        return Promise.reject(Error('Key has been deleted while retrieving key bv key, dirty reads!'));
+      }
+
       return {
         id: key.replace('exercise:', ''),
-        ...JSON.parse((await redis.get(key)) ?? '{}'),
+        ...JSON.parse(exercise),
       };
     }),
   );

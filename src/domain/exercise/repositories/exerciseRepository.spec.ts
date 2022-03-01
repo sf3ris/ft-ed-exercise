@@ -72,6 +72,28 @@ t.test('getExercises should return all exercises when filter is not provided', a
   ]);
 });
 
+t.test('getExercises should throw if key has been deleted after being retrieved', async (t) => {
+  t.plan(4);
+
+  const expectedKeys = ['exercise:1234', 'exercise:1235'];
+  const { exerciseRepository } = t.mock('./exerciseRepository', {
+    '../../../infrastructure/storage/redis': {
+      getRedisInstance: () => ({
+        keys: async (pattern: string): Promise<string[]> => {
+          t.same(pattern, 'exercise:*');
+          return expectedKeys;
+        },
+        get: async (key: string): Promise<string | null> => {
+          t.ok(expectedKeys.includes(key));
+          return null;
+        },
+      }),
+    },
+  });
+
+  await t.rejects(exerciseRepository.getExercises());
+});
+
 t.test('getExercises should return filtered exercises', async (t) => {
   t.plan(4);
 
