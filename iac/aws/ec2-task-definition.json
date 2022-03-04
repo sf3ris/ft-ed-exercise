@@ -18,6 +18,14 @@
           }
         ],
         "logConfiguration": {
+          "logDriver": "awslogs",
+          "secretOptions": [],
+          "options": {
+            "awslogs-group": "fit-tracker-exercise-cloudwatch-log-group",
+            "awslogs-region": "eu-central-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+
         }
       }
     ],
