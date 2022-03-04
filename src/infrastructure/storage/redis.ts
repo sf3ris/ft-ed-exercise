@@ -11,6 +11,7 @@ export const registerRedisInstance = async (fastify: FastifyInstance): Promise<F
     .register(fastifyRedis, {
       host: redisHost,
       port: redisPort,
+      lazyConnect: true,
     })
     .then(
       () => {

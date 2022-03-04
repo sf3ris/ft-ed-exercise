@@ -4,7 +4,7 @@ import { registerRedisInstance } from './infrastructure/storage/redis';
 import { registerKafkaBrokers } from './infrastructure/events/kafka';
 import { registerLogger } from './infrastructure/logger';
 import exercise from './routes/exercise';
-import health from "./routes/health";
+import health from './routes/health';
 
 export default (
   fastify: FastifyInstance<Server, IncomingMessage, ServerResponse>,
