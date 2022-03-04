@@ -5,8 +5,8 @@
     "inferenceAccelerators": [],
     "containerDefinitions": [
       {
-        "name": "shopper-app-bff",
-        "image": "shopper-app-bff-repository:00000",
+        "name": "fit-tracker-exercise-container",
+        "image": "fit-tracker-exercise:00000",
         "resourceRequirements": null,
         "essential": true,
         "memory": 512,
@@ -18,13 +18,6 @@
           }
         ],
         "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": [],
-          "options": {
-            "awslogs-group": "ShopperAppBffInfraStack-shopperappbfftaskdefinitionshopperappbffLogGroupF04F63F8-ENMrBxYWa8au",
-            "awslogs-region": "eu-central-1",
-            "awslogs-stream-prefix": "ecs"
-          }
         }
       }
     ],
@@ -32,8 +25,8 @@
     "networkMode": null,
     "memory": "512",
     "cpu": "256",
-    "executionRoleArn": "arn:aws:iam::293076747951:role/shopper-app-bff-execution-role",
-    "family": "shopper-app-bff-task-definition",
+    "executionRoleArn": "arn:aws:iam::072075398333:role/fit-tracker-exercise-execution-role",
+    "family": "InfraFitTrackerExerciseStackfittrackerexercisetaskdefinitionC3BF3341",
     "taskRoleArn": "",
     "placementConstraints": []
   }

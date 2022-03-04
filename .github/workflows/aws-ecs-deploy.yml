@@ -29,7 +29,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: shopper-app-bff-repository
+          ECR_REPOSITORY: fit-tracker-exercise
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and
@@ -44,13 +44,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ./iac/aws/ec2-task-definition.json
-          container-name: shopper-app-bff
+          container-name: fit-tracker-exercise-container
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: shopper-app-bff-service
-          cluster: shopper-app-bff-cluster
+          service: InfraFitTrackerExerciseStack-fittrackerexerciseserviceService098C09E1-prr2jtbp4PAZ
+          cluster: InfraFitTrackerExerciseStack-fittrackerexercisecluster84D66EC2-p4PEStgGcITO
           wait-for-service-stability: true

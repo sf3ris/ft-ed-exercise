@@ -2,8 +2,9 @@ import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 import { registerRedisInstance } from './infrastructure/storage/redis';
 import { registerKafkaBrokers } from './infrastructure/events/kafka';
-import exercise from './routes/exercise';
 import { registerLogger } from './infrastructure/logger';
+import exercise from './routes/exercise';
+import health from "./routes/health";
 
 export default (
   fastify: FastifyInstance<Server, IncomingMessage, ServerResponse>,
@@ -20,6 +21,7 @@ export default (
 
   // register routes
   fastify.register(exercise);
+  fastify.register(health);
 
   next();
 };
