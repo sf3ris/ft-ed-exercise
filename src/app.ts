@@ -15,8 +15,8 @@ export default (
     reply.status(500).send(error);
   });
 
-  registerRedisInstance(fastify);
-  registerKafkaBrokers();
+  //registerRedisInstance(fastify);
+  //registerKafkaBrokers();
   registerLogger(fastify.log);
 
   // register routes

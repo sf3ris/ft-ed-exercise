@@ -12,7 +12,7 @@ server.listen({ host: '0.0.0.0', port: 8081 }, (err, address) => {
   }
 
   // Start read model handlers
-  exerciseEventHandler();
+  // exerciseEventHandler();
 
   console.log(`Server listening at ${address}`);
 });
