@@ -35,7 +35,7 @@ jobs:
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./Dockerfile.production .
+          docker build --build-arg APP_PORT=80 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./Dockerfile.production .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
@@ -43,7 +43,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ./iac/aws/ec2-task-definition.json
+          task-definition: ./iac/aws/fargate-task-definition.json
           container-name: fit-tracker-exercise-container
           image: ${{ steps.build-image.outputs.image }}
 
@@ -51,6 +51,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: InfraFitTrackerExerciseStack-fittrackerexerciseserviceService098C09E1-prr2jtbp4PAZ
-          cluster: InfraFitTrackerExerciseStack-fittrackerexercisecluster84D66EC2-p4PEStgGcITO
+          service: fit-tracker-app
+          cluster: fit-tracker-ecs-cluster
           wait-for-service-stability: true

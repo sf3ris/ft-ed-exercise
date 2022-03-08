@@ -5,7 +5,8 @@ import exerciseEventHandler from './domain/exercise/exerciseEventHandler';
 const server = fastify({ logger: true });
 server.register(app);
 
-server.listen({ host: '0.0.0.0', port: 8081 }, (err, address) => {
+const port = process.env.APP_PORT ?? '8081';
+server.listen({ host: '0.0.0.0', port: parseInt(port) }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
