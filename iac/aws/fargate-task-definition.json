@@ -33,7 +33,7 @@
     "memory": "512",
     "cpu": "256",
     "executionRoleArn": "arn:aws:iam::072075398333:role/ecsTaskExecutionRole",
-    "family": "InfraFitTrackerExerciseStackfittrackerexercisetaskdefinitionC3BF3341",
+    "family": "fit-tracker-exercise",
     "taskRoleArn": "arn:aws:iam::072075398333:role/ecsTaskExecutionRole",
     "placementConstraints": []
   }
