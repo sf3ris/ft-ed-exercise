@@ -11,7 +11,7 @@
           "logDriver": "awslogs",
           "secretOptions": [],
           "options": {
-            "awslogs-group": "fit-tracker-exercise-cloudwatch-log-group",
+            "awslogs-group": "fit-tracker-exercise-stack-FitTrackerExerciseLogGroup-kSB6gJ8s3Fd7",
             "awslogs-region": "eu-central-1",
             "awslogs-stream-prefix": "ecs"
           }
@@ -23,7 +23,7 @@
             "containerPort": 80
           }
         ],
-        "image": "072075398333.dkr.ecr.eu-central-1.amazonaws.com/fit-tracker-exercise",
+        "image": "072075398333.dkr.ecr.eu-central-1.amazonaws.com/fit-tracker-exercise-registry",
         "name": "fit-tracker-exercise-container"
       }
     ],
@@ -33,7 +33,7 @@
     "memory": "512",
     "cpu": "256",
     "executionRoleArn": "arn:aws:iam::072075398333:role/ecsTaskExecutionRole",
-    "family": "fit-tracker-exercise",
+    "family": "fit-tracker-exercise-stack-ExerciseTaskDefinitionBase-7LhZsKBcvoqc",
     "taskRoleArn": "arn:aws:iam::072075398333:role/ecsTaskExecutionRole",
     "placementConstraints": []
   }
